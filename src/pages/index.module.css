@@ -1,0 +1,496 @@
+/*
+ * The front page. Left-aligned throughout, on one measure: prose never runs past about 70
+ * characters.
+ */
+
+.page {
+    --measure: 40rem;
+    width: 100%;
+    max-width: 74rem;
+    margin: 0 auto;
+    padding: 0 1.25rem 6rem;
+    overflow-x: clip;
+}
+
+.page h2 {
+    font-size: clamp(1.6rem, 1.25rem + 1.3vw, 2.3rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.9rem;
+    max-width: var(--measure);
+}
+
+.page h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.35rem;
+}
+
+/* The hero: what this is on the left, what sits on what on the right. */
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 4rem;
+    align-items: center;
+    padding: 5.5rem 0 5rem;
+}
+
+.hero > * {
+    min-width: 0;
+}
+
+.logo {
+    display: block;
+    width: 9.5rem;
+    height: auto;
+    margin: -1rem 0 1.25rem -0.6rem;
+}
+
+.headline {
+    font-size: clamp(2.5rem, 1.4rem + 3.8vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-weight: 850;
+    margin-bottom: 1.4rem;
+}
+
+/* The logo's badge: cyan, with ink on it. */
+.headline em {
+    font-style: normal;
+    color: var(--ms-ink);
+    background: var(--ms-cyan);
+    padding: 0 0.15em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    border-radius: 0.08em;
+}
+
+.lede {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ms-text-secondary);
+    max-width: 34rem;
+    margin-bottom: 2rem;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.primary,
+.secondary {
+    display: inline-block;
+    padding: 0.7rem 1.35rem;
+    border-radius: 999px;
+    font-weight: 600;
+    transition:
+        background-color 120ms ease,
+        border-color 120ms ease;
+}
+
+.primary {
+    background: var(--ms-accent-fill);
+    border: 2px solid var(--ms-outline);
+    color: var(--ms-on-accent);
+}
+
+.primary:hover {
+    background: var(--ms-accent-fill-hover);
+    color: var(--ms-on-accent);
+    text-decoration: none;
+}
+
+.secondary {
+    border: 2px solid var(--ms-border-strong);
+    color: var(--ms-text);
+}
+
+.secondary:hover {
+    border-color: var(--ms-accent);
+    color: var(--ms-text);
+    text-decoration: none;
+}
+
+.primary:focus-visible,
+.secondary:focus-visible {
+    outline: 2px solid var(--ms-accent);
+    outline-offset: 2px;
+}
+
+/* Sections, each under a rule, each with an anchor the navbar points at. */
+
+.section {
+    padding-top: 4.5rem;
+    border-top: 1px solid var(--ms-border);
+    margin-top: 4.5rem;
+    scroll-margin-top: 3rem;
+}
+
+.hero + .section {
+    margin-top: 0;
+}
+
+.sectionLede {
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: var(--ms-text-secondary);
+    max-width: var(--measure);
+    margin-bottom: 2.25rem;
+}
+
+/*
+ * The products. Each card wears its own product's colours, taken from its own site, so a reader
+ * who follows the link lands somewhere that looks like what they clicked.
+ */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+    gap: 1.5rem;
+}
+
+.product {
+    --p-bg: var(--ms-surface);
+    --p-border: var(--ms-border);
+    --p-text: var(--ms-text);
+    --p-text-secondary: var(--ms-text-secondary);
+    --p-accent: var(--ms-accent);
+    --p-on-accent: #ffffff;
+    --p-font: var(--ms-font-display);
+
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 1.75rem;
+    border-radius: 16px;
+    background: var(--p-bg);
+    border: 1px solid var(--p-border);
+    color: var(--p-text);
+}
+
+/* deadair's carbon and phosphor, in either scheme: the station is dark only. */
+.deadair {
+    --p-bg: radial-gradient(120% 90% at 100% 0%, #13201a 0%, #0c0e0d 60%);
+    --p-border: #242927;
+    --p-text: #e8edea;
+    --p-text-secondary: #a7b2ac;
+    --p-accent: #2fd98c;
+    --p-on-accent: #0c0e0d;
+    --p-font: 'Chakra Petch', 'IBM Plex Sans', var(--ifm-font-family-base);
+}
+
+/* rhapsode's ink indigo, following the scheme as its site does. */
+.rhapsode {
+    --p-bg: linear-gradient(160deg, #ffffff 0%, #ecebfb 100%);
+    --p-border: #cfcfda;
+    --p-text: #1b1b24;
+    --p-text-secondary: #4a4a5a;
+    --p-accent: #443bbe;
+    --p-on-accent: #ffffff;
+    --p-font: var(--ifm-font-family-base);
+}
+
+/* curator's Mantine teal, following the scheme as its web app does. */
+.curator {
+    --p-bg: linear-gradient(160deg, #ffffff 0%, #e6fcf5 100%);
+    --p-border: #c3e6db;
+    --p-text: #10201b;
+    --p-text-secondary: #3d524b;
+    --p-accent: #087f5b;
+    --p-on-accent: #ffffff;
+    --p-font: var(--ifm-font-family-base);
+}
+
+html[data-theme='dark'] .curator {
+    --p-bg: linear-gradient(160deg, #0f1715 0%, #0c2a22 100%);
+    --p-border: #22403a;
+    --p-text: #e8f3ef;
+    --p-text-secondary: #a9c2ba;
+    --p-accent: #38d9a9;
+    --p-on-accent: #0b1210;
+}
+
+html[data-theme='dark'] .rhapsode {
+    --p-bg: linear-gradient(160deg, #17181d 0%, #191833 100%);
+    --p-border: #3a3b46;
+    --p-text: #e9e9f0;
+    --p-text-secondary: #b0b0c0;
+    --p-accent: #938de5;
+    --p-on-accent: #111216;
+}
+
+.productHead {
+    margin-bottom: 1rem;
+}
+
+.page .productName {
+    font-family: var(--p-font);
+    font-size: 1.9rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: var(--p-text);
+    margin-bottom: 0.2rem;
+}
+
+.productTagline {
+    font-size: 1.1rem;
+    font-weight: 550;
+    color: var(--p-accent);
+    margin: 0;
+}
+
+.productBody {
+    line-height: 1.6;
+    color: var(--p-text-secondary);
+    margin-bottom: 1.1rem;
+}
+
+.points {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.75rem;
+    display: grid;
+    gap: 0.55rem;
+}
+
+.points li {
+    position: relative;
+    padding-left: 1.2rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    color: var(--p-text);
+}
+
+.points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--p-accent);
+}
+
+.productLinks {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.productPrimary,
+.productSecondary {
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.productPrimary {
+    background: var(--p-accent);
+    color: var(--p-on-accent);
+}
+
+.productPrimary:hover {
+    color: var(--p-on-accent);
+    text-decoration: none;
+    filter: brightness(1.08);
+}
+
+.productSecondary {
+    border: 1px solid var(--p-border);
+    color: var(--p-text);
+}
+
+.productSecondary:hover {
+    color: var(--p-text);
+    border-color: var(--p-accent);
+    text-decoration: none;
+}
+
+/* The toolkits, beside the file the first of them reads. */
+
+.split {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: 3rem;
+    align-items: start;
+}
+
+.toolkits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+}
+
+.toolkit {
+    margin: 0;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--ms-border-strong);
+}
+
+.toolkit:hover {
+    border-left-color: var(--ms-accent);
+}
+
+.toolkit h3 a {
+    color: var(--ms-text);
+}
+
+.toolkitTagline {
+    font-weight: 550;
+    margin-bottom: 0.4rem;
+}
+
+.toolkitBody {
+    line-height: 1.6;
+    color: var(--ms-text-secondary);
+    margin-bottom: 0.6rem;
+    max-width: var(--measure);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin: 0;
+    font-size: 0.88rem;
+}
+
+.usedBy {
+    color: var(--ms-text-dimmed);
+}
+
+.contract {
+    position: sticky;
+    top: 5rem;
+    min-width: 0;
+}
+
+.contract > div {
+    margin-bottom: 0.75rem;
+    font-size: 0.86rem;
+}
+
+.caption {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ms-text-dimmed);
+    margin: 0;
+}
+
+/* The principles: a name and what it means, two to a row. */
+
+.principles {
+    margin: 1.5rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 3.5rem;
+    max-width: 62rem;
+}
+
+.principle dt {
+    font-family: var(--ms-font-display);
+    font-stretch: 88%;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+}
+
+.principle dd {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--ms-text-secondary);
+}
+
+/* The workshop: small cards, each a link. */
+
+.workshop {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.workshop li {
+    margin: 0;
+}
+
+.workshopItem {
+    display: block;
+    height: 100%;
+    padding: 1.25rem 1.35rem;
+    border: 1px solid var(--ms-border);
+    border-radius: 12px;
+    background: var(--ms-surface);
+    color: var(--ms-text);
+    transition: border-color 120ms ease;
+}
+
+.workshopItem:hover {
+    border-color: var(--ms-accent);
+    color: var(--ms-text);
+    text-decoration: none;
+}
+
+.workshopItem p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ms-text-secondary);
+}
+
+@media (max-width: 996px) {
+    .hero,
+    .split {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    .hero {
+        padding-top: 3rem;
+    }
+
+    .logo {
+        width: 7.5rem;
+        margin-top: 0;
+    }
+
+    .contract {
+        position: static;
+    }
+
+    .workshop {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .principles {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .product {
+        padding: 1.5rem 1.35rem;
+    }
+
+    .section {
+        padding-top: 3rem;
+        margin-top: 3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .primary,
+    .secondary,
+    .workshopItem {
+        transition: none;
+    }
+}

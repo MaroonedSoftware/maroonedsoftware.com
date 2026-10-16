@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    // Standalone rather than extending @docusaurus/tsconfig, whose `baseUrl` TypeScript 6 rejects.
+    "compilerOptions": {
+        "noEmit": true,
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        "noFallthroughCasesInSwitch": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "jsx": "react-jsx",
+        "lib": ["es2022", "DOM", "DOM.Iterable"],
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        // Docusaurus's own ambient modules: `@theme/*`, `@docusaurus/*` and CSS modules.
+        "types": ["node", "@docusaurus/module-type-aliases", "@docusaurus/theme-classic"]
+    },
+    // `tests/` is type-checked by vitest, not by the build.
+    "include": ["./src/**/*", "./docusaurus.config.ts"],
+    "exclude": ["node_modules", "dist", ".docusaurus"]
+}

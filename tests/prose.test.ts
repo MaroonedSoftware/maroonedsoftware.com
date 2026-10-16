@@ -1,0 +1,32 @@
+import { readdir, readFile } from 'node:fs/promises';
+import { join, relative, resolve } from 'node:path';
+import { describe, expect, it } from 'vitest';
+
+// The house style: no em dashes in prose. A site is the one place a reader meets the prose first,
+// so the rule is checked here rather than trusted.
+
+const root = resolve(import.meta.dirname, '..');
+
+/** Every file under `dir` with one of `extensions`, depth first. */
+async function walk(dir: string, extensions: string[]): Promise<string[]> {
+    const entries = await readdir(dir, { withFileTypes: true });
+    const nested = await Promise.all(
+        entries.map(entry => {
+            const path = join(dir, entry.name);
+            if (entry.isDirectory()) return walk(path, extensions);
+            return extensions.some(extension => entry.name.endsWith(extension)) ? [path] : [];
+        }),
+    );
+    return nested.flat();
+}
+
+describe('the site prose', () => {
+    it('has no em dashes', async () => {
+        const files = [...(await walk(join(root, 'src'), ['.ts', '.tsx', '.md', '.mdx', '.css'])), join(root, 'docusaurus.config.ts')];
+        const offenders: string[] = [];
+        for (const file of files) {
+            if ((await readFile(file, 'utf8')).includes('—')) offenders.push(relative(root, file));
+        }
+        expect(offenders).toEqual([]);
+    });
+});

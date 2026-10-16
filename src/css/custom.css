@@ -1,0 +1,145 @@
+/*
+ * The site in the logo's colours: its cyan (#00a4e1), its ink (#040707) and white, in both schemes,
+ * following the operating system.
+ *
+ * The logo's cyan is 2.8:1 on white, so it fills things and carries ink text (7.1:1) but is never
+ * text itself on a light background; `--ms-accent` is a darker cyan for that. Infima states its dark
+ * palette on `[data-theme='dark']`, so the dark block has to name that selector to win. Every text
+ * colour here clears 4.5:1 on the background it sits on.
+ */
+
+:root {
+    --ms-cyan: #00a4e1;
+    --ms-ink: #040707;
+
+    --ms-bg: #f6f8f9;
+    --ms-surface: #ffffff;
+    --ms-raised: #edf1f3;
+    --ms-border: #dce3e6;
+    --ms-border-strong: #c3ced2;
+    --ms-text: #0b1214;
+    --ms-text-secondary: #3f4d52;
+    --ms-text-dimmed: #5c6c71;
+    /* The accent as text: 5.7:1 on the background. */
+    --ms-accent: #006a92;
+    --ms-accent-soft: rgb(0 164 225 / 10%);
+    /* Anything filled with the accent carries ink, as the logo's badge does. */
+    --ms-accent-fill: var(--ms-cyan);
+    --ms-accent-fill-hover: #18b2ec;
+    --ms-on-accent: var(--ms-ink);
+    --ms-outline: var(--ms-ink);
+    --ms-sea: var(--ms-cyan);
+
+    --ms-font-display: 'Archivo Variable', 'Arial Narrow', ui-sans-serif, system-ui, sans-serif;
+
+    --ifm-color-primary: #006a92;
+    --ifm-color-primary-dark: #005f83;
+    --ifm-color-primary-darker: #005a7c;
+    --ifm-color-primary-darkest: #004a66;
+    --ifm-color-primary-light: #0075a1;
+    --ifm-color-primary-lighter: #007aa8;
+    --ifm-color-primary-lightest: #008abe;
+
+    --ifm-background-color: var(--ms-bg);
+    --ifm-background-surface-color: var(--ms-surface);
+    --ifm-font-color-base: var(--ms-text);
+    --ifm-font-color-secondary: var(--ms-text-secondary);
+    --ifm-heading-color: var(--ms-text);
+    --ifm-link-color: var(--ms-accent);
+    --ifm-hr-background-color: var(--ms-border);
+    --ifm-code-background: var(--ms-raised);
+    --ifm-navbar-background-color: color-mix(in srgb, var(--ms-bg) 88%, transparent);
+
+    --ifm-font-family-base: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --ifm-font-family-monospace: 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+    --ifm-heading-font-family: var(--ms-font-display);
+    --ifm-heading-font-weight: 800;
+    --ifm-code-font-size: 88%;
+
+    --ifm-global-radius: 10px;
+    --ifm-navbar-shadow: none;
+}
+
+html[data-theme='dark'] {
+    /* The logo's ink, very slightly lifted. */
+    --ms-bg: #070a0b;
+    --ms-surface: #0e1416;
+    --ms-raised: #152024;
+    --ms-border: #1f2b2f;
+    --ms-border-strong: #2f3f44;
+    --ms-text: #eef4f6;
+    --ms-text-secondary: #b3c1c5;
+    --ms-text-dimmed: #8a9a9f;
+    /* The logo's cyan, lightened a touch: 8.7:1. */
+    --ms-accent: #2bb8ee;
+    --ms-accent-soft: rgb(0 164 225 / 14%);
+    --ms-accent-fill-hover: #2bb8ee;
+    --ms-outline: transparent;
+
+    --ifm-color-primary: #2bb8ee;
+    --ifm-color-primary-dark: #13aeea;
+    --ifm-color-primary-darker: #12a5dd;
+    --ifm-color-primary-darkest: #0f88b6;
+    --ifm-color-primary-light: #47c2f0;
+    --ifm-color-primary-lighter: #55c6f1;
+    --ifm-color-primary-lightest: #7fd4f4;
+
+    --ifm-background-color: var(--ms-bg);
+    --ifm-background-surface-color: var(--ms-surface);
+    --ifm-font-color-base: var(--ms-text);
+    --ifm-font-color-secondary: var(--ms-text-secondary);
+    --ifm-heading-color: var(--ms-text);
+    --ifm-link-color: var(--ms-accent);
+    --ifm-hr-background-color: var(--ms-border);
+    --ifm-code-background: var(--ms-raised);
+    --ifm-navbar-background-color: color-mix(in srgb, var(--ms-bg) 88%, transparent);
+}
+
+body {
+    background: var(--ms-bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Headings in the logo's register: heavy and a little condensed. */
+h1,
+h2,
+h3 {
+    font-stretch: 88%;
+}
+
+.navbar {
+    border-bottom: 1px solid var(--ms-border);
+    backdrop-filter: saturate(140%) blur(10px);
+}
+
+.navbar__title {
+    font-family: var(--ms-font-display);
+    font-weight: 800;
+    font-stretch: 88%;
+    font-size: 1.15rem;
+    letter-spacing: -0.005em;
+}
+
+.navbar__logo {
+    height: 2.4rem;
+    margin-top: -0.3rem;
+}
+
+.footer {
+    --ifm-footer-background-color: var(--ms-surface);
+    --ifm-footer-link-color: var(--ms-text-secondary);
+    --ifm-footer-title-color: var(--ms-text);
+    --ifm-footer-color: var(--ms-text-dimmed);
+    border-top: 1px solid var(--ms-border);
+}
+
+/* A small label above a heading. */
+.ms-eyebrow {
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ms-accent);
+    margin-bottom: 0.9rem;
+}

@@ -1,0 +1,20 @@
+allowBuilds:
+    # Docusaurus's. Its postinstall prints a funding banner and builds nothing.
+    core-js: false
+    # The Rust compiler behind @docusaurus/faster, shipped as a prebuilt binary per platform.
+    '@swc/core': true
+
+# pnpm's pre-run dependency check misfires in sandboxed sessions, where the store path drifts.
+# Warn rather than trying to reinstall underneath a running command.
+verifyDepsBeforeRun: warn
+
+overrides:
+    # Docusaurus 3.10's bundler pins these two plugins a major behind the releases that take
+    # serialize-javascript 7, which is the same CommonJS function on Node 20+. Build tooling only.
+    'copy-webpack-plugin@11>serialize-javascript': ^7.0.5
+    'css-minimizer-webpack-plugin@5>serialize-javascript': ^7.0.5
+    # The dev server. sockjs is unmaintained at 0.3.24 and only ever calls `v4()`, which the advisory
+    # (v3, v5 and v6 writing into a caller's buffer) does not touch.
+    'sockjs>uuid': ^11.1.1
+    # GHSA-68fv-2mgg-jv7q. Scoped to `<1.2.2` so it stops doing anything once upstream resolves past it.
+    'source-map-js@<1.2.2': ^1.2.2

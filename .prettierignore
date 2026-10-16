@@ -1,0 +1,6 @@
+pnpm-lock.yaml
+node_modules/
+dist/
+.docusaurus/
+# Prose, wrapped by hand at 100 columns.
+*.md

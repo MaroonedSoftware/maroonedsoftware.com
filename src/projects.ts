@@ -77,6 +77,7 @@ export const products: Product[] = [
             'One Docker image beside a Postgres, with an Unraid template',
         ],
         links: [
+            { label: 'curator.maroonedsoftware.com', href: 'https://curator.maroonedsoftware.com' },
             { label: 'Docker image', href: 'https://hub.docker.com/r/maroonedsoftware/curator' },
             { label: 'Source', href: `${github}/curator` },
         ],

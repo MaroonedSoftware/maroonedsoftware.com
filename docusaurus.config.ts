@@ -56,7 +56,7 @@ const config: Config = {
                     items: [
                         { label: 'deadair', href: 'https://deadair.radio' },
                         { label: 'rhapsode', href: 'https://rhapsode.dev' },
-                        { label: 'curator', href: `${github}/curator` },
+                        { label: 'curator', href: 'https://curator.maroonedsoftware.com' },
                     ],
                 },
                 {

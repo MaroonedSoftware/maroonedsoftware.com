@@ -73,6 +73,7 @@ const config: Config = {
                         { label: 'GitHub', href: github },
                         { label: 'npm', href: 'https://www.npmjs.com/org/maroonedsoftware' },
                         { label: 'Docker Hub', href: 'https://hub.docker.com/u/maroonedsoftware' },
+                        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/knoxcoder/' },
                     ],
                 },
             ],
